@@ -54,9 +54,12 @@ public class Competicion {
 	}
 
 	public int obtenerEdadConcursanteMasVeterano() {
-//		No contempla que sea hombre
-		return this.equipos.stream().sorted((e1, e2) -> -Integer.compare(e1.getEdadMaxima(), e2.getEdadMaxima()))
-				.findFirst().get().getEdadMaxima();
+		//Obtenemos una lisa con todos los concursantes:
+		List<Concursante> participantes = new ArrayList<>();
+//		this.equipos.forEach(e->participantes.addAll(e.getConcursantes()));
+		participantes = this.equipos.stream().flatMap(e->e.getConcursantes().stream()).collect(Collectors.toList());
+		return participantes.stream().filter(p->p.esHombre()).sorted((e1, e2) -> -Integer.compare(e1.getEdad(), e2.getEdad()))
+				.findFirst().get().getEdad();
 	}
 
 	/**

@@ -14,7 +14,7 @@ public class Principal {
 	public static void main(String[] args) {
 		Concursante c1 = new Concursante("Pepe", LocalDate.now().minusYears(80), Genero.HOMBRE);
 		Concursante c2 = new Concursante("Juan", LocalDate.now().minusYears(20), Genero.HOMBRE);
-		Concursante c3 = new Concursante("Sofia", LocalDate.now().minusYears(20), Genero.MUJER);
+		Concursante c3 = new Concursante("Antonia", LocalDate.now().minusYears(90), Genero.MUJER);
 
 		Equipo e1 = new Equipo("Equipo1");
 
