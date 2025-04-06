@@ -69,8 +69,8 @@ public class Principal {
 //		System.out.println(comp1.agruparEquiposPorGenero());
 //		System.out.println();
 //		System.out.println(comp1.agruparEquiposPorProblemas());
-//		System.out.println();
-//		System.out.println(comp1.obtenerNombresUnicos());
+		System.out.println();
+		System.out.println(comp1.obtenerNombresUnicos());
 
 //		try {
 //			e1.addConcursante(c1);

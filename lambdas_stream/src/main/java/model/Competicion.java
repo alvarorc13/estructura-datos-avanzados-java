@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import main.java.exceptions.ProgramaMeException;
 
@@ -54,12 +55,12 @@ public class Competicion {
 	}
 
 	public int obtenerEdadConcursanteMasVeterano() {
-		//Obtenemos una lisa con todos los concursantes:
+		// Obtenemos una lisa con todos los concursantes:
 		List<Concursante> participantes = new ArrayList<>();
 //		this.equipos.forEach(e->participantes.addAll(e.getConcursantes()));
-		participantes = this.equipos.stream().flatMap(e->e.getConcursantes().stream()).collect(Collectors.toList());
-		return participantes.stream().filter(p->p.esHombre()).sorted((e1, e2) -> -Integer.compare(e1.getEdad(), e2.getEdad()))
-				.findFirst().get().getEdad();
+		participantes = this.equipos.stream().flatMap(e -> e.getConcursantes().stream()).collect(Collectors.toList());
+		return participantes.stream().filter(p -> p.esHombre())
+				.sorted((e1, e2) -> -Integer.compare(e1.getEdad(), e2.getEdad())).findFirst().get().getEdad();
 	}
 
 	/**
@@ -140,14 +141,8 @@ public class Competicion {
 	 * sin repetidos
 	 */
 	public Collection<String> obtenerNombresUnicos() {
-		List<String> nombresUnicos = new ArrayList<>();
-		for (Equipo equipo : this.equipos) {
-			for (Concursante nombre : equipo.getConcursantes()) {
-				if (!nombresUnicos.contains(nombre.getNombre()))
-					nombresUnicos.add(nombre.getNombre());
-			}
-		}
-		return nombresUnicos;
+		return equipos.stream().flatMap(e -> e.getConcursantes().stream()).map(n -> n.getNombre())
+				.collect(Collectors.toSet());
 	}
 
 }
